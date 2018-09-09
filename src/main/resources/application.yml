@@ -1,0 +1,37 @@
+server:
+  port: 80
+
+spring:
+  application:
+      name: anzi
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: h2
+    schema: classpath:sql/schema.sql
+    data: classpath:sql/data.sql
+
+logging:
+  level:
+    root: DEBUG
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+
+user:
+  UserServiceUrl: http://localhost/user/
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false  #是否将自己注册到Eureka Server
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}/eureka/
+
+
+
