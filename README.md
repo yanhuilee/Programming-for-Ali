@@ -19,7 +19,7 @@
 - [集合](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/02-collection.md)
 - [多线程](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/03-multithread.md)
 - [JVM](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/04-jvm.md)
-- [设计模式](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/05-Design pattern.md)
+- [设计模式](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/05-Design_pattern.md)
 - 新特性：都2.0了已经
 
 ---
