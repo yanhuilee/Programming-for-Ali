@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-      name: anzi
+      name: microservice-provider-user
   jpa:
     generate-ddl: false
     show-sql: true
@@ -14,9 +14,10 @@ spring:
     schema: classpath:sql/schema.sql
     data: classpath:sql/data.sql
 
+
 logging:
   level:
-    root: DEBUG
+    root: INFO
     org.hibernate: INFO
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
@@ -28,10 +29,33 @@ eureka:
   instance:
     hostname: localhost
   client:
-    register-with-eureka: false  #是否将自己注册到Eureka Server
-    fetch-registry: false
+    register-with-eureka: true  #是否将自己注册到Eureka Server
+    fetch-registry: false #单节点，不需要同步其他Server数据
     service-url:
-      defaultZone: http://${eureka.instance.hostname}/eureka/
+      defaultZone: http://${eureka.instance.hostname}/eureka
+
+#info:
+#  app:
+#    name: @project.artifactId@
+#    encoding: @project.build.sourceEncoding@
+#    java:
+#      source: @java.version@
+#      target: @java.version@
+
+#security:
+#  basic:
+#    enabled: true #开启基于HTTP basic 的认证
+#  user:
+#    name: user
+#    password: 123
 
 
+# 负载均衡
+microservice-provider-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbanancer.BandomRule
 
+# com.netflix.client.ClientException: Load balancer does not have available server for client：xxx
+ribbon:
+  eureka:
+    enabled: true
