@@ -3,7 +3,7 @@
 - 反射机制：动态代理（rpc，aop）
 - equals() hashcode()
 - foreach循环原理
-- Exception: 检查异常(check 显式捕获)，运行时异常（注意NPE）
+- [Exception](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/basic/04-Exception.md) : 检查异常(check 显式捕获)，运行时异常（注意NPE）
 
 ##### 2、关键字：
 
