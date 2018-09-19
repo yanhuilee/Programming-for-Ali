@@ -8,6 +8,7 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,7 +24,7 @@ public class MovieController {
     @Autowired
     private UserFeignClient userFeignClient;
 
-    @Value("user.UserServiceUrl")
+    @Value("${user.UserServiceUrl}")
     private String userServiceUrl;
 
     @GetMapping("/user2/{id}")
@@ -46,6 +47,7 @@ public class MovieController {
      * @return
      */
     @GetMapping("/user3/{id}")
+    @ResponseBody
     public User findById_feign(@PathVariable Long id) {
         return userFeignClient.findById(id);
     }

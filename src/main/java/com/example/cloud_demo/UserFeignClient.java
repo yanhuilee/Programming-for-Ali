@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 指定客户端名称，用于创建 Ribbon 负载均衡器
  * 还可以指定 url
  */
-@FeignClient(name = "microservice-provider-user")
+@FeignClient(value = "microservice-provider-user")
 public interface UserFeignClient {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
