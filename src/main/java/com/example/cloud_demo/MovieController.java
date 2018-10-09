@@ -1,5 +1,7 @@
 package com.example.cloud_demo;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,13 @@ public class MovieController {
     @Value("${user.UserServiceUrl}")
     private String userServiceUrl;
 
+    @HystrixCommand(fallbackMethod = "findByIdFallback", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000"),
+            @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"),
+    }, threadPoolProperties = {
+            @HystrixProperty(name = "coreSize", value = "1"),
+            @HystrixProperty(name = "maxQueueSize", value = "10"),
+    })
     @GetMapping("/user2/{id}")
     public User findById(@PathVariable Long id) {
         return restTemplate.getForObject(userServiceUrl + id, User.class);
@@ -50,5 +59,12 @@ public class MovieController {
     @ResponseBody
     public User findById_feign(@PathVariable Long id) {
         return userFeignClient.findById(id);
+    }
+
+    public User findByIdFallback(Long id) {
+        User user = new User();
+        user.setId(-1L);
+        user.setName("默认用户");
+        return user;
     }
 }

@@ -25,13 +25,14 @@ const
 - transient
 
 URLConnection
-IOUtils
 
 #### 4、[基础类库](https://github.com/yanhuilee/java_interview/wiki/rt.jar)
 
-
 - [String](https://github.com/yanhuilee/java_interview/wiki/String)
 - Integer、Long、Enum、BigDecimal
+
+#### 5、Lambda
+[Java 8 lambda 最佳实践](https://wizardforcel.gitbooks.io/java8-tutorials/Java%208%20lambda%20%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5.html)
 
 ##### 自动拆装箱
 Integer 缓存机制

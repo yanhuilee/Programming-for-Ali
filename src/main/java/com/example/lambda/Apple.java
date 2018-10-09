@@ -1,4 +1,4 @@
-package com.example.new_;
+package com.example.lambda;
 
 import java.util.Comparator;
 

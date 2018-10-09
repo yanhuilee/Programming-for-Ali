@@ -12,23 +12,33 @@
 | 狼性 | 机器学习 |
 
 ---
+#### 基础扎实，综合素质过硬
+- 内存模型，网络通信，多线程
+- 数据库模型设计，架构，性能优化，常用配置
+---
 ### 基本功
 > IO/NIO/socket/multi thread/collection/concurrency
 
+1. 核心语法：try-with-resource、switch string、diamonds、Lambda、Stream
+2. 集合类：包括线程安全集合
+3. 工具类：Guava Commons FastJson
+4. 高级特性
+  - 并发编程: Executors提供的并发工具，Fork/Join框架，CountDownLatch/Semaphore/CyclicBarrier等同步工具
+
 - [知识点](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/01-basic_training.md)
-- [集合](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/02-collection.md)
+- [集合类](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/02-collection.md)
+
 - [多线程](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/03-multithread.md)
 - [JVM](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/04-jvm.md)
 - [设计模式](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/05-Design_pattern.md)
-- 新特性：都2.0了已经
 
 ---
 ### 开源框架
 #### Spring 生态
-- mvc
-- boot2
-- cloud
-- data
+- Spring MVC
+- spring boot
+- Spring Cloud
+- Spring Data
 
 #### MyBatis
 

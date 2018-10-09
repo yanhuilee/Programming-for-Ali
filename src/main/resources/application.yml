@@ -31,6 +31,7 @@ eureka:
   client:
     register-with-eureka: true  #是否将自己注册到Eureka Server
     fetch-registry: false #单节点，不需要同步其他Server数据
+    healthche
     service-url:
       defaultZone: http://${eureka.instance.hostname}/eureka
 

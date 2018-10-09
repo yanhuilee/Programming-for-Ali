@@ -1,4 +1,4 @@
-package com.example.new_;
+package com.example.lambda;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
