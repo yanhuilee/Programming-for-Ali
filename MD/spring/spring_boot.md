@@ -4,29 +4,160 @@
 #### Spring Boot 最重要的4大核心特性
 自动配置、起步依赖、Actuator、命令行界面(CLI)
 
-#### SpringApplication.run()
-
-#### Spring Boot Redis Cluster
-```yaml
-spring.redis:
-  database: 0 # Redis数据库索引（默认为0）
-  #host: 192.168.1.8
-  #port: 6379
-  password: 123456
-  timeout: 10000 # 连接超时时间（毫秒）  
-  pool:
-    max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
-    max-idle: 8 # 连接池中的最大空闲连接
-    max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
-    min-idle: 0 # 连接池中的最小空闲连接
-  cluster:
-    nodes:
-      - 192.168.1.8:9001
-      - 192.168.1.8:9002
-      - 192.168.1.8:9003
+常用 starter
+```
+spart-boot-starter-activemq
+spart-boot-starter-aop
+spart-boot-starter-data-redis
+spart-boot-starter-freemarker
+spart-boot-starter-thymeleaf
+spart-boot-starter-webflux
 ```
 
----
-言必行，行必果
-赏罚分明，令行禁止
-韩信：53 55 56 60 62 69 70
+#### SpringApplication.run()
+
+```java
+@RestController
+@RequestMapping
+@SpringBootApplication
+	//@EnableAutoConfiguration：启用Spring Boot的自动配置机制
+	//@ComponentScan：@Component在应用程序所在的程序包上启用扫描
+	//@Configuration：允许在上下文中注册额外的bean或导入其他配置类
+```
+
+##### Jackson返回结果处理
+```java
+@JsonIgnore //指定字段不返回
+@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss", locale="zh", timezone="GMT+8")
+@JsonInclude(Include.NON_NULL) //空字段不返回
+@JsonProperty  //指定别名
+```
+
+##### 12：文件上传
+```
+MultipartFile
+    getOriginalFileName()
+    transferTo(path + filename)
+```
+FileCopyUtils
+
+##### 14：Dev-tool热部署
+```
+spring.devtools.restart.exclude=static/**,public/**
+// 应用重启触发文件
+spring.devtools.restart.trigger-file=xxx
+```
+
+
+##### 16：配置文件映射到属性/实体类
+```java
+// 配置类
+@Component
+@PropertySource({"classpath:resource.properties"})
+@ConfigurationProperties(profix="")
+
+@Value("${}")
+```
+
+##### 18：测试之 MockMvc
+```
+@RunWith(SpringRunner.class)
+@SpringBootTest(class=启动类.class) //启动工程
+@AutoConfigureMockMvc
+```
+
+##### 20：配置全局异常
+```
+// 异常注解，@RestControllerAdvice
+@ControllerAdvice
+// 捕获方法
+@ExceptionHandler(value=Exception.class)
+```
+
+
+##### 22：部署war项目到tomcat
+```
+<build>
+    <finalName>
+// 启动类
+A extends SpringBootServiceInitializer
+protected SpringApplicationBuilder configure(SpringApplicationBuilder s) {
+  return s.sources(A.class)
+}
+```
+
+##### 24：自定义Filter、Listener
+- 过滤器基于回调（doFilter()），依赖Servlet容器
+- 过滤器是在请求进入容器后，进入servlet之前进行预处理的
+- 过滤非法请求，参数，非法字符
+
+- 拦截器基于反射（AOP），可以访问action上下文、值栈里的对象
+- 拦截器希望在方法前后做些什么事情
+
+- 处理过程：过滤前 -> 拦截前 -> action执行 -> 拦截后 -> 过滤后
+
+![Tomcat容器](https://images2017.cnblogs.com/blog/330611/201710/330611-20171023144517066-24770749.png)
+
+默认Filter
+```
+CharacterEncodingFilter
+HiddenHttpMethodFilter
+HttpPutFormContentFilter
+RequestContextFilter
+```
+
+Filter优先级 Ordered.
+```java
+@WebFilter(urlPatterns = "/api/*", filterName = "LoginFilter")
+class LoginFilter implements Filter {
+    doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
+        req.getParameter("username")
+        filterChain.doFilter(servletRequest, servletResponse)
+  }
+}
+```
+
+Servlet3
+```java
+@WebServlet(name = "userServlet", urlPatterns = "/customs")
+class UserServlet extends HttpServlet {
+  doGet()
+}
+
+@ServletComponentScan
+```
+
+常用监听器(ServletContextListener/HttpSessionListener/ServletRequestListener)
+```java
+@WebListener
+class RequestListener implements ServletRequestListener {
+    requestDestroyed(ServletRequestEvent sre) {
+        
+    }
+    
+    requestInitialized(ServletRequestEvent sre)
+}
+```
+
+拦截器
+```java
+@Configuration
+class LoginInterceptor implements HandlerInterceptor {
+    preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) {
+        String token = req.getParemeter("access_token")
+    }
+    postHandle()
+    afterCompletion()
+}
+```
+
+##### 44：日志框架LogBack
+slf4j
+
+logback-spring.xml
+```
+
+```
+
+##### 65：服务端主动推送SSE
+##### 69：监控Actuator
