@@ -1,7 +1,6 @@
 package com.example.lambda;
 
 import com.google.common.collect.Lists;
-import org.junit.Assert;
 
 import java.util.Comparator;
 import java.util.List;
@@ -27,7 +26,7 @@ public class ComparatorDemo {
         List<Human> humans = Lists.newArrayList(new Human("Sarah", 10), new Human("Jack", 12));
         humans.sort((Human h1, Human h2) -> h1.getName().compareTo(h2.getName()));
 //        Comparator.comparing(Human::getName);
-        Assert.assertEquals(humans.get(0).getName(), "Jack");
+//        Assert.assertEquals(humans.get(0).getName(), "Jack");
         System.out.println(humans.get(0).getName().equals("Jack"));
 
     }

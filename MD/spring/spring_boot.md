@@ -29,8 +29,17 @@ spart-boot-starter-webflux
 ```java
 @JsonIgnore //指定字段不返回
 @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss", locale="zh", timezone="GMT+8")
-@JsonInclude(Include.NON_NULL) //空字段不返回
+@JsonInclude(JsonInclude.Include.NON_NULL) //空字段不返回
 @JsonProperty  //指定别名
+```
+
+对象 和 Json 的互转
+```
+ObjectMapper objectMapper = new ObjectMapper();
+
+String userJsonStr = objectMapper.writeValueAsString(user);
+
+User jsonUser = objectMapper.readValue(userJsonStr, User.class);
 ```
 
 ##### 12：文件上传
@@ -132,9 +141,9 @@ class UserServlet extends HttpServlet {
 @WebListener
 class RequestListener implements ServletRequestListener {
     requestDestroyed(ServletRequestEvent sre) {
-        
+
     }
-    
+
     requestInitialized(ServletRequestEvent sre)
 }
 ```
@@ -159,5 +168,35 @@ logback-spring.xml
 
 ```
 
+##### 59：多环境配置
+config/application-test.properties
+```
+spring.profile.active=test
+```
+
+##### 60：响应式编程 webflux
+事件驱动-异步，非阻塞-观察者模式-通知
+
 ##### 65：服务端主动推送SSE
+聊天，股票
+
 ##### 69：监控Actuator
+nohup java -jar xx.jar &
+
+
+---
+##### Using Spring Boot without the Parent POM
+```
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+			<!-- Import dependency management from Spring Boot -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-dependencies</artifactId>
+			<version>2.0.4.RELEASE</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+```

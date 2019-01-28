@@ -1,13 +1,21 @@
 BeanFactory：工厂模式
 bean工厂和ApplicationContext
 
-IoC：依赖注入，
+#### IoC：依赖注入(工厂模式 + 反射)
   Bean: 作用域-prototype，生命周期（init-method/destory-method）
   自动装配：byType
+  
+#### bean
+scope
 
-注解：
-  <context:annotation-config />
-  @Bean @Required @Autowired @Qualifier
+生命周期
+
+#### 注解：
+```java
+<context:annotation-config />
+@Bean @Required 
+@Autowired  //@Qualifier 指定名称
+```
 
 数据访问：
   JdbcTemplate
