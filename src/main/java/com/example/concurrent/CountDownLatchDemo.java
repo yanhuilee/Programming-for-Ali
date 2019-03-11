@@ -37,5 +37,7 @@ public class CountDownLatchDemo implements Runnable {
         // 发射火箭
         System.out.println("Fire!");
         pool.shutdown();
+
+        
     }
 }

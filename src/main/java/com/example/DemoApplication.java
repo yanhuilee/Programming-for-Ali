@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-//@ComponentScan("com.example.mvc")
 @ServletComponentScan
 public class DemoApplication {
 
