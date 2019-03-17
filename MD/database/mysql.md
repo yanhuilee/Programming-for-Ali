@@ -1,8 +1,9 @@
-#### 目录
+### 大纲目录
 存储机制
 锁级别
 索引
 - [主从复制](#主从复制)
+- 事务隔离级别
 
 <h3 style="margin-top: 1rem; color: rgb(61, 167, 66); font-size:16px;">Heap表是什么</h3>
 
