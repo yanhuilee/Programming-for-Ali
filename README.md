@@ -35,13 +35,15 @@
 ---
 ### 开源框架
 #### Spring 生态
-- BeanFactory
-- Bean 的生命周期
-- Spring 框架中的设计模式
-- DispatcherServlet 的工作流程？
-- Spring MVC 拦截器？
+- [ ] [Spring注解式开发](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/opensource/01-Spring注解式开发.md)
+- [ ] 整合 MyBatis
+- [ ] Spring 框架中的设计模式
 
 #### MyBatis
+- 整体架构
+- 核心部件
+- SQL 执行
+- 缓存机制
 
 ---
 ### MySQL

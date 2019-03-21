@@ -3,3 +3,9 @@
 
 输入: numbers={2, 7, 11, 15}, target=9
 输出: index1=1, index2=2
+
+- guava中有实现BloomFilter算法
+- 死锁-银行家算法
+- B+Tree
+- bitmap
+- 图
