@@ -44,7 +44,7 @@
 
 算法：排序，索引，存储，去重，平滑等
 
-> [Java核心技术](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/java_core/Java 核心技术/《Java 核心技术》.md)
+> [Java核心技术](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/java_core/Java%20核心技术/《Java%20核心技术》.md)
 
 
 - [知识点](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/01-basic_training.md)
