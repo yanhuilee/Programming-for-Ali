@@ -1,4 +1,4 @@
-### 容器相关
+### 一、容器相关
 
 ##### 组件注册
 ```
@@ -93,3 +93,22 @@ BeanPostProcessor ////bean构造之后，初始化前后进行处理工作
 
 ### 划重点
 aware beanpostprocessor refresh()
+
+
+### servlet3
+
+HttpServlet
+@WebServlet("/xx")
+@WebFilter
+
+- ServletContainerInitializer
+
+ServletContext 注册 web组件：servlet/filter/listener
+```
+onStartUp(ServletContext s) {
+	s.addServlet("", obj)
+}
+```
+
+
+#### 异步请求

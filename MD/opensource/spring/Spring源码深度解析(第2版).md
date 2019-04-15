@@ -52,7 +52,7 @@ doGetBean(name)
 	// 6. 将存储 XML 配置文件的 GernericBeanDefinition 转换为 RootBeanDefinition 
 ```
 
-##### FactorvBean
+##### FactoryBean
 
 
 ### 事务

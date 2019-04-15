@@ -1,17 +1,17 @@
-#### 第9讲 | 对比 HashMap、TreeMap有什么不同？
+### 第9讲 | 对比 HashMap、TreeMap有什么不同？
 
 - 理解 Map 相关类似整体结构，尤其是有序数据结构的一些要点
 - 从源码去分析 HashMap 的设计和实现要点，理解容量、负载因子等，为什么需要这些参数，如何影响 Map 的性能，实践中如何取舍等
-- 理解树化改造的相关原理和改进原因
+- 理解树化改造的相关原理
 
-#### map 整体结构
+#### 1、map 整体结构
 
 大部分使用 Map 的场景，通常就是放入、访问或者删除，而对顺序没有特别要求，HashMap 在这种情况下基本是最好的选择。 
 
 **HashMap 的性能表现非常依赖于哈希码的有效性，请务必掌握 hashCode 和 equals 的一些基本约定**，equals 相等，hashCode 一定要相等。
 
 
-##### HashMap 源码分析
+#### 2、HashMap 源码分析
 容量（capacity）和负载因子（load factor）、树化
       
 ```
@@ -49,7 +49,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbent, boolean evict) {
 ```
 
 具体键值对在哈希表中的位置（数组 index）取决于下面的位运算：
-```
+```java
 i = (n - 1) & hash
 
 static final int hash(Object key) {
@@ -62,7 +62,7 @@ static final int hash(Object key) {
 
 这是因为有些数据计算出的哈希值差异主要在高位，而 HashMap 里的哈希寻址是忽略容量以上的高位的，那么这种处理就可以有效避免类似情况下的哈希碰撞。
 
-```
+```java
 final Node<K,V>[] resize() {
     Node<K,V>[] oldTab = table;
     int oldCap = (oldTab == null) ? 0 : oldTab.length;
@@ -122,14 +122,14 @@ final void treeifyBin(Node<K,V>[] tab, int hash) {
 **本质上这是个安全问题。**因为在元素放置过程中，如果一个对象哈希冲突，都被放置到同一个桶里，则会形成一个链表，链表查询是线性的，会严重影响存取的性能。
 
 
-##### LinkedHashMap 实现 LRU
+#### 3、LinkedHashMap
 
 LinkedHashMap 通常提供的是遍历顺序符合插入顺序，它的实现是通过为条目（键值对）维护一个双向链表。
 
 注意，通过特定构造函数，我们可以创建反映访问顺序的实例，所谓的 put、get、compute 等，都算作“访问”。
 
 
-##### TreeMap
+#### 4、TreeMap
 
 TreeMap 则是基于红黑树的一种提供顺序访问的 Map，和 HashMap 不同，它的 get、put、remove 之类操作都是 O（log(n)）的时间复杂度，具体顺序可以由指定的 Comparator 来决定，或者根据键的自然顺序来判断。
 
@@ -137,7 +137,7 @@ TreeMap 则是基于红黑树的一种提供顺序访问的 Map，和 HashMap �
 
 <p>类似 hashCode 和 equals 的约定，为了避免模棱两可的情况，自然顺序同样需要符合一个约定，就是 compareTo 的返回值需要和 equals 一致，否则就会出现模棱两可情况。</p>
 
-```
+```java
 public V put(K key, V value) {
     Entry<K,V> t = …
     cmp = k.compareTo(t.key);

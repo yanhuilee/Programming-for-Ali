@@ -17,19 +17,35 @@
 ---
 ### 基本功
 > IO/NIO/socket/multi thread/collection/concurrency
-> Java核心技术36讲
+
+书单
 > Java工程师技术修炼之道
 > 实战Java高并发程度设计
 > 剑指Offer
 > 算法导论
 > 《Java 并发编程实战》
-	
+> 深入分布式缓存 从原理到实践
+> 逆流而上，阿里巴巴技术成长之路
+> 学C编程，也可以卡通一点
+> 代码重构2
 
-1. 核心语法：try-with-resource、switch string、diamonds、Lambda、Stream
-2. 集合类：包括线程安全集合
+
+#### java 方面
+1. 核心语法：try-with-resource, switch string, Lambda, Stream
+2. 集合类：HashMap，ArrayList, LinkedList, HashSet, TreeSet
+	- 包括线程安全集合: ConcurrentHashMap，ConcurrentLinkedQueue
+	- 了解实现原理，查询修改的性能和使用场景
 3. 工具类：Guava Commons FastJson
 4. 高级特性
   - 并发编程: Executors提供的并发工具，Fork/Join框架，CountDownLatch/Semaphore/CyclicBarrier等同步工具
+
+反射机制：提供第三方开发者扩展能力（Servlet容器，JDBC连接）
+动态代理: AOP-日志，安全，事务；RPC
+
+算法：排序，索引，存储，去重，平滑等
+
+> [Java核心技术](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/java_core/Java 核心技术/《Java 核心技术》.md)
+
 
 - [知识点](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/01-basic_training.md)
 - [集合类](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/02-collection.md)
