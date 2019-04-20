@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * @Author: Lee
  * @Date: 2019/04/15 17:39
+ * java.util.Observer Observable
  */
 public class ObserverDemo {
     public static void main(String[] args) {
@@ -23,8 +24,10 @@ interface Observer {
 
 interface Subject {
     void registerObserver(Observer observer);
+
     void removeObserver(Observer observer);
-    void nofifyObservers();
+
+    void notifyObservers();
 }
 
 interface DisplayElement {
@@ -43,7 +46,9 @@ class WeatherData implements Subject {
 
     @Override
     public void registerObserver(Observer observer) {
-        observers.add(observer);
+        if (observers != null && !observers.contains(observer)) {
+            observers.add(observer);
+        }
     }
 
     @Override
@@ -55,22 +60,16 @@ class WeatherData implements Subject {
     }
 
     @Override
-    public void nofifyObservers() {
+    public void notifyObservers() {
         observers.forEach(observer -> observer.update(temperature, humidity, pressure));
-    }
-
-    /**
-     * 当从气象站得到更新观测值时，通知观察者
-     */
-    void measurementsChanged() {
-        nofifyObservers();
     }
 
     void setMeasurements(float temperature, float humidity, float pressure) {
         this.temperature = temperature;
         this.humidity = humidity;
         this.pressure = pressure;
-        measurementsChanged();
+        // 当从气象站得到更新观测值时，通知观察者
+        notifyObservers();
     }
 }
 
@@ -102,4 +101,19 @@ class CurrentConditionsDisplay implements Observer, DisplayElement {
                 "%}");
     }
 
+}
+
+class ForecastDisplay implements Observer, DisplayElement {
+    float currentPressure = 29.92F;
+    float lastPressure;
+
+    @Override
+    public void update(float temperature, float humidity, float pressure) {
+
+    }
+
+    @Override
+    public void display() {
+
+    }
 }

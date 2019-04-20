@@ -1,10 +1,12 @@
 package com.example.design_pattern;
 
 /**
+ * 装饰者
  * @Author: Lee
  * @Date: 2019/03/13 02:27
+ * BufferedInputStream(InputStream in) {super(in); --> protected volatile InputStream in;}
  */
-public class StarbuzzCoffee {
+public class Decorator_ {
     public static void main(String[] args) {
         Beverage beverage = new Espresso();
         System.out.println(beverage.getDescription() + ", $" + beverage.cost());

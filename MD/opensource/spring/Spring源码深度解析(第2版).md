@@ -1,24 +1,48 @@
 > 创建时间：2019-03-20
 
-### Spring 整体架构
-- Core Container: Core, Beans, Context 和 Expression Language
-- Data Access/Integration
+### 大纲
+- 第 l 章 [Spring 整体架构](#1、Spring%20整体架构)
+- 第 2 章 容器的基本实现
+- 第 5 章 bean 的加载
+- 第 6 章容器的功能扩展
+- 第 7 章 AOP
+
+
+### 1、Spring 整体架构
+- Core Container: Core（核心工具类）, 
+	- Beans：包含访问配直文件、创建和管理 bean 以及进行 ( IoC/DI ）操作相关
+	- Context 模块继承了 Beans 的特性，为 Spring 核心提供了大量扩展，添加了对国际化（如资源绑定）、事件传播、资源加载和对 Context 的透明创 建的支持。ApplicationContext 接口是 Context 模块的关键。 
+	- Expression Language
+- Data Access/Integration：包含JDBC、 ORM、 OXM、几础和 Transaction 模块
 - Web
 - AOP
 - Test
 
+
 ### 2、容器的基本实现
 
-核心类
+#### 核心类
 ```java
 DefaultlistableBeanFactory: 注册及加载 bean 的默认实现
-	XmlBeanFactory: 容器的基础
+
 
 XmlBeanDefinitionReader: xml配置文件读取 --> Document
+	ResourceLoader：定义资源加载器，主妥应用于根据给定的资源文件地址返回对应的 Resource
+	DocumentLoader：定义从资源、文件加载到转换为 Document 
 ```
 
+#### 容器的基础
 ```java
-解析及注册 BeanDefinition (容器内部<bean>表示)
+XmlBeanFactory(Resource resourcee, BeanFactory parentBeanFactory) {
+	super(parentBeanFactory);
+	this.reader.loadBeanDefinitions(resource) //资源加载
+}
+ClassPathResource: 配置文件构造为 Resource
+```
+
+#### 解析及注册
+```java
+BeanDefinition (容器内部<bean/>表示)
 	doRegisterBeanDefinitions(root)
 		// 处理 profile
 		// 解析前处理         -- 模板方法
@@ -38,7 +62,8 @@ BeanDefinitonRegistry
 通知监昕器解析及注册完成
 ```
 
-### bean 的加载
+
+### 5、bean 的加载
 结束了对 XML 文件的解析，接下来就是对 bean 加载的探索
 
 ```java
@@ -55,31 +80,3 @@ doGetBean(name)
 ##### FactoryBean
 
 
-### 事务
-```java
-@Transactional(propagation=Propagation.REQUIRED)
-
-DataSourceTransactionManager
-
-TxNamespaceHandler <tx:annotation-dirven />
-	init()
-		registerBeanDefinitionParser("annotation-dirven", new AnnotationDrivenBeanDifinitionParser())
-			parse(Element element, ParserContext parserContext) {
-				// Spring 中的事务是以 AOP 基础的
-				if ("aspectj".equals(element.getAttribute("mode")))
-			}
-```
-
-##### 事务增强器
-- 创建事务
-- 回滚处理
-- 事务提交
-
-### Spring Boot 体系原理
-##### SpringApplication 启动
-```java
-// 创建
-context = createApplicationContext()
-refreshContext(context)
-afterRefresh(context, applicationArguments)
-```

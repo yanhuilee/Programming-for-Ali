@@ -1,6 +1,16 @@
 > 维护人员：**Lee**  
 > 创建时间：2018-10-03
 
+### Spring Boot 体系原理
+##### SpringApplication 启动
+```java
+// 创建
+context = createApplicationContext()
+refreshContext(context)
+afterRefresh(context, applicationArguments)
+```
+
+
 #### Spring Boot 最重要的4大核心特性
 自动配置、起步依赖、Actuator、命令行界面(CLI)
 

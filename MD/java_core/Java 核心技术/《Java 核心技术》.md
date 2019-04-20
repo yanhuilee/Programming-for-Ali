@@ -12,9 +12,11 @@ JVM 底层：深挖 JVM 源代码，谈谈计算机指令
 - 第17讲 | 一个线程两次调用start()方法会出现什么情况？
 - 第18讲 | 什么情况下Java程序会产生死锁？如何定位、修复？
 - 第19讲 | Java并发包提供了哪些并发工具类？
-- 第20讲 | 并发包中的ConcurrentLinkedQueue和LinkedBlockingQueue有什么区别？
-- 第21讲 | Java并发类库提供的线程池有哪几种？ 分别有什么特点？
+- 第20讲 | 并发包中的ConcurrentLinkedQueue 和 LinkedBlockingQueue有什么区别？
+- 第21讲 | [Java并发类库提供的线程池有哪几种？ 分别有什么特点？](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/java_core/Java%20核心技术/02-线程池.md)
 - 第22讲 | AtomicInteger底层实现原理是什么？如何在自己的产品代码中应用CAS操作？
+
+##### JVM相关
 - 第23讲 | 请介绍类加载过程，什么是双亲委派模型？
 - 第24讲 | 有哪些方法可以在运行时动态生成一个Java类？
 - 第25讲 | 谈谈JVM内存区域的划分，哪些区域可能发生OutOfMemoryError?

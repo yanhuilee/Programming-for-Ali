@@ -1,3 +1,37 @@
+### Lambda
+```java
+Runnable task = () -> { for() {do();} }  // 没有参数
+Comparator<String> comp = (first, second) ->
+    first.length() - second.length();
+```
+
+-  函数式接口：只有一个抽象方法 @FunctionalInterface
+
+```java
+Arrays.sort(words, (first, second) ->
+  first.length() - second.length());
+```
+
+- 方法引用：
+
+```java
+Arrays.sort(strings, (x, y) -> x.compareToIgnoreCase(y))
+Arrays.sort(strings, String::compareToIgnoreCase)
+
+list.removeIf(Objects::isNull)
+list.forEach(x -> System.out.println(x))
+list.forEach(System.out::println())
+```
+this::equals 等同于 x -> this.equals(x)
+
+- 构造函数引用
+
+```java
+Stream<Employee> stream = lists.stream().map(Employee::new)
+Employee[] buttons = stream.toArray(Employee[]::new)
+```
+
+
 ### Optional
 NPE
 ```
