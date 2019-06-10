@@ -1,14 +1,7 @@
-@EnableAspectJAutoProxy
-```
-@Import(AspectJAutoProxyRegister.class)
-		AnnotationAwareAspectJAutoProxyCreator
-```
 
-创建AOP代理
 
-常用注解
+- 常用注解
 ```
-@EnableAspectJAutoProxy
 @Aspect
 @Pointcut
 @Before
@@ -35,6 +28,13 @@ JointPoint getArgs() getSignature().getName()
 ### AOP原理-@EnableAspectJAutoProxy
 ```
 @Import({AspectJAutoProxyRegistrar.class})
+	注册 AnnotationAwareAspectJAutoProxyCreator
+		// Register bean processors that intercept bean creation.
+		registerBeanPostProcessors(beanFactory);
+
 ```
+创建AOP代理
+
+创建对象：postProcessAfterInitialization
 
 #### 获取拦截器链-MethodInterceptor

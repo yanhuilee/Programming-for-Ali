@@ -1,0 +1,1 @@
+> 作用于容器启动阶段，允许我们在容器实例化 Bean 之前对注册到该容器的 BeanDefinition 做出修改。相当于给了我们在 Bean 实例化之前最后一次修改 BeanDefinition 的机会
