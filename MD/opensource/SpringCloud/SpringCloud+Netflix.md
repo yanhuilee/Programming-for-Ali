@@ -8,19 +8,28 @@
 - Spring Cloud Sleuth: 分布式追踪系统，单次请求的链路轨迹以及耗时等信息
 
 Spring Cloud Netflix
-- Zuul: API网关
-	- 认证授权和安全
-	- 监控
-	- 动态路由
-	- 压力测试
-	- 限流
-	- 静态响应控制：对于某些请求直接在边缘返回而不转发到后端集群
-	- 多区域弹性：在AWS的多个Region中请求路由
-- Eureka: 服务注册发现，包括负载均衡和容错
-- Hystrix: 容错，降级，隔离等
+
+### Zuul: API网关
+- 认证授权和安全
+- 监控
+- 动态路由
+- 压力测试
+- 限流
+- 静态响应控制：对于某些请求直接在边缘返回而不转发到后端集群
+- 多区域弹性：在AWS的多个Region中请求路由
 
 
-#### Hystrix 服务熔断
+### Eureka: 服务注册发现，包括负载均衡和容错
+注册：当客户端注册Eureka时，它提供关于自身的元数据，例如主机和端口，健康指示符URL，主页等。Eureka从属于服务的每个实例接收心跳消息。如果心跳失败超过可配置的时间表，则通常将该实例从注册表中删除。
+
+/info /health
+
+阈值时（Hystrix中的默认值为5秒内的20次故障）
+
+@HystrixCommand(fallbackMethod = "defaultStores")
+
+
+### Hystrix 服务熔断，降级，隔离
 ```
 @HystrixCommand(fallbackMethod = "findByIdFallback", commandProperties = {
         @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000"),

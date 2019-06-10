@@ -25,7 +25,6 @@
 ```java
 DefaultlistableBeanFactory: 注册及加载 bean 的默认实现
 
-
 XmlBeanDefinitionReader: xml配置文件读取 --> Document
 	ResourceLoader：定义资源加载器，主妥应用于根据给定的资源文件地址返回对应的 Resource
 	DocumentLoader：定义从资源、文件加载到转换为 Document 

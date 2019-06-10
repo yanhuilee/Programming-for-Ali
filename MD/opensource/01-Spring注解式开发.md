@@ -9,17 +9,18 @@
 
 - @Scope：设置组件作用域
 ```
-prototype：多实例，每次获取时才调用方法创建对象
+prototype：多实例，每次获取时都调用方法创建对象
 singleton：启动时创建，map.get()获取
 request：每次请求创建一个实例
 session：
-// 单例类引用prototype 问题：单便类只实例化一次，所以属性也只设置一次
+// 单例类引用prototype 问题：单例类只实例化一次，所以属性也只设置一次
 ```
 
 ```
 @Lazy
 
 @Import(xx.class) //快速导入组件
+	ImportSelector
 ```
 
 AnnotationConfigApplicationContext(配置类.class)
@@ -28,8 +29,8 @@ FactoryBean<xx> 注册组件
 ```
 public interface FactoryBean<T> {
     // & 返回工厂bean本身
-    T getObject() throws Exception;
-    Class<?> getObjectType();
+    T getObject() throws Exception; // return new xx()
+    Class<?> getObjectType();       // return xx.class
     boolean isSingleton();
 }
 ```
@@ -51,11 +52,11 @@ public interface FactoryBean<T> {
 
 - @Autowired&@Qualifier&@Primary
 ```
-@Autowired //参数，方法，构造器的自动装配
-setXx()
+@Autowired(required = false) //参数，方法，构造器的自动装配
+	setXx()
 
 Aware
-    ApplicationContextAware
+    ApplicationContextAware  // 注入IoC容器
     BeanNameAware
 ```
 
@@ -85,11 +86,14 @@ BeanPostProcessor ////bean构造之后，初始化前后进行处理工作
 ```
 
 ### AOP
-
-### 声明式事务
 ```
 28、[源码]-AOP原理-@EnableAspectJAutoProxy
+30、[源码]-AOP原理-注册AnnotationAwareAspectJAutoProxyCreator
+32、[源码]-AOP原理-创建AOP代理
+33、[源码]-AOP原理-获取拦截器链-MethodInterceptor
+34、[源码]-AOP原理-链式调用通知方法
 ```
+
 
 ### 划重点
 aware beanpostprocessor refresh()

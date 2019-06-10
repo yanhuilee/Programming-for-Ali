@@ -1,3 +1,21 @@
+```java
+# 配置
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.url=
+mybatis.config-location=classpath:/
+mybatis.mapper-locations=classpath*:mapper/**/*.xml
+
+@MapperScan(basePackages=)
+@Mapper
+public interface CityMapper {
+    @Select("SELECT * FROM CITY WHERE state = #{state}")
+    City findByState(@Param("state") String state);
+}
+
+@Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+```
+
 ### 整合 MyBatis
 MyBatis 中的配置文件主要封装在 configuration
 

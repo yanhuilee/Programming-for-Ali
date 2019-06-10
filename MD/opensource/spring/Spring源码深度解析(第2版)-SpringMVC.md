@@ -1,0 +1,7 @@
+DispatcherServlet
+
+xxxResolver
+	ViewResolver
+	HandlerExceptionResolver
+	MultipartResolver
+HandlerMapping
