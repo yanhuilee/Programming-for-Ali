@@ -5,7 +5,7 @@ BeanPostProcessor 可以理解为是 Spring 的一个工厂钩子（其实 Sprin
 一般普通的 BeanFactory 是不支持自动注册 BeanPostProcessor 的，需要我们手动调用 `addBeanPostProcessor(BeanPostProcessor beanPostProcessor)` 进行注册。注册后的 BeanPostProcessor 适用于所有该 BeanFactory 创建的 bean，但是 ApplicationContext 可以在其 bean 定义中自动检测所有的 BeanPostProcessor 并自动完成注册，同时将他们应用到随后创建的任何 Bean 中。
 
 前后置处理器，他们应用 `invokeInitMethods(String beanName, final Object bean, RootBeanDefinition mbd)` 的前后。如下图：
-![BeanPostProcessor后置处理器流程]()
+![BeanPostProcessor后置处理器流程](https://github.com/yanhuilee/Programming-for-Ali/blob/master/MD/images/BeanPostProcessor后置处理器流程.png)
 
 ```java
 Object wrappedBean = bean;
