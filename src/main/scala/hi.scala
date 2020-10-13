@@ -5,7 +5,7 @@ object hi {
   def main(args: Array[String]): Unit = {
     var name = "hehe"
     println(f"hi: $name%s") //${表达式}
-
+    name = "anzi"
     println(s"hi: $name")
 
     val arr: Array[Int] = Array(1, 2, 3, 4)

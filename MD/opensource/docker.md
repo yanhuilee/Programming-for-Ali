@@ -1,6 +1,8 @@
+```
 Job for docker.service failed because the control process exited with error
 vim /etc/docker/daemon.json
 	"storage-driver": "overlay"
+```	
 	
 docker run -t -i ubuntu:12.04 /bin/bash
 
@@ -13,9 +15,9 @@ docker search <image>
 容器器相关
 ```
 docker run
-docker start/stop <容器器名>
-docker ps <容器器名>
-docker logs <容器器名>
+docker start/stop <容器名>
+docker ps <容器名>
+docker logs <容器名>
 ```
 
 run
@@ -51,4 +53,18 @@ docker run --name mongo -p 27017:27017 -v ~/dockerdata/mongo:/data/db -e MONGO_I
 启动 Redis
 ```
 docker run --name redis -d -p 6379:6379 redis
+```
+
+tomcat
+```
+docker run -p 8099:8080  --name my_tomcat_1 tomcat:8.5
+	-d 后台
+	-v 宿主机目录:容器目录
+```
+
+mysql
+```
+cd ~/soft/mysql
+docker run -p 3306:3306 --name mysql5.7 -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs
+	 -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123 -d mysql:5.7
 ```

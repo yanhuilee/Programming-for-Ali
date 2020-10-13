@@ -2,30 +2,21 @@
 > 创建时间：2018-10-03
 
 ### Spring Boot 体系原理
-##### SpringApplication 启动
-```java
-// 创建
-context = createApplicationContext()
-refreshContext(context)
-afterRefresh(context, applicationArguments)
-```
 
-
-#### Spring Boot 最重要的4大核心特性
+#### Spring Boot 4大核心特性
 自动配置、起步依赖、Actuator、命令行界面(CLI)
 
 常用 starter
 ```
 spart-boot-starter-activemq
-spart-boot-starter-aop
 spart-boot-starter-data-redis
-spart-boot-starter-freemarker
 spart-boot-starter-thymeleaf
 spart-boot-starter-webflux
 ```
 
 #### SpringApplication.run()
 
+自动配置原理：
 ```java
 @RestController
 @RequestMapping
@@ -34,6 +25,24 @@ spart-boot-starter-webflux
 	//@ComponentScan：@Component在应用程序所在的程序包上启用扫描
 	//@Configuration：允许在上下文中注册额外的bean或导入其他配置类
 ```
+
+- 66 动手实现自己的自动配置
+- 67 如何在低版本 Spring 中快速实现类似自动配置的功能
+```
+BeanFactoryPostProcessor
+```
+
+- 70深挖 Spring Boot 的配置加载机制
+```java
+// 配置类
+@Component
+@PropertySource({"classpath:resource.properties"})
+@ConfigurationProperties(profix="")
+
+@Value("${}")
+```
+
+- 84-如何将SpringBoot应用打包成Docker镜像文件.hd
 
 ##### Jackson返回结果处理
 ```java
@@ -46,9 +55,7 @@ spart-boot-starter-webflux
 对象 和 Json 的互转
 ```
 ObjectMapper objectMapper = new ObjectMapper();
-
 String userJsonStr = objectMapper.writeValueAsString(user);
-
 User jsonUser = objectMapper.readValue(userJsonStr, User.class);
 ```
 
@@ -65,17 +72,6 @@ FileCopyUtils
 spring.devtools.restart.exclude=static/**,public/**
 // 应用重启触发文件
 spring.devtools.restart.trigger-file=xxx
-```
-
-
-##### 16：配置文件映射到属性/实体类
-```java
-// 配置类
-@Component
-@PropertySource({"classpath:resource.properties"})
-@ConfigurationProperties(profix="")
-
-@Value("${}")
 ```
 
 ##### 18：测试之 MockMvc
